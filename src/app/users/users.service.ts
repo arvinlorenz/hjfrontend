@@ -99,6 +99,7 @@ export class UsersService {
   ) {
     let updatedUser;
     return this.http.put(`${BACK_END_URL}user/` + userId, {
+      ...userData,
       username,
       firstname,
       lastname,

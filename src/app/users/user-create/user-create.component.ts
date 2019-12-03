@@ -41,11 +41,11 @@ export class UserCreateComponent implements OnInit {
           user.table_no,
           user.seat_no
         );
-
         if (user.companions.length > 0) {
           for (const companion of user.companions) {
             this.companionsArray.push(
               new FormGroup({
+                coming: new FormControl(companion.coming),
                 firstname: new FormControl(companion.firstname, Validators.required),
                 lastname: new FormControl(companion.lastname, Validators.required),
                 table_no: new FormControl(companion.table_no, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
@@ -107,7 +107,6 @@ export class UserCreateComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-
     if (!this.editMode) {
       this.usersService.addUser(
         this.form.value.username,
