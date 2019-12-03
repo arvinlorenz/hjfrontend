@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/invites');
       } else if (user.coming === 'not coming') {
         this.router.navigateByUrl('/invites/thank-you');
-      } else {
+      } else if (user.coming === 'coming') {
         this.router.navigateByUrl('/invites/ty');
       }
     });
