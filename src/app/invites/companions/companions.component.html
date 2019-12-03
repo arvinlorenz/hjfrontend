@@ -1,0 +1,10 @@
+<h3 class="heading-3 mb-sm">Your Companions</h3>
+<div class="heading-4 heading-2--dark mb-md card__greetings">
+  <p>Please also confirm your companions' attendance. Tick check if he/she is coming. </p>
+</div>
+<div class="card__companions">
+  <div class="companions" *ngFor="let companion of companions; let i = index">
+      <mat-checkbox [value]="companion._id" (change)="onChange($event)">{{ companion.firstname }} {{ companion.lastname }}</mat-checkbox>
+  </div>
+</div>
+<button class="btn" (click)="submit()">Submit</button>

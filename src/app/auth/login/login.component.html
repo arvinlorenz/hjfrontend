@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Login</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+    <mat-form-field>
+        <input matInput
+                type="text"
+                placeholder="Username"
+               formControlName="username">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+                type="password"
+                placeholder="Password"
+               formControlName="password">
+    </mat-form-field>
+
+
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="close()">Cancel</button>
+    <button mat-stroked-button color="primary" (click)="onLogin()" [disabled]="!form.valid">Login</button>
+</div>

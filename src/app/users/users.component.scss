@@ -1,0 +1,29 @@
+@import '../../styles/abstracts/variables';
+
+
+.container {
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  grid-template-rows: min-content 1fr;
+}
+table {
+  width: 100%;
+  grid-column: 1 / -1;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  align-self: start;
+}
+
+button {
+  padding: 0 4rem;
+  border-radius: 0;
+  margin-bottom: 1.75rem;
+}
+
+tr:hover {
+  cursor: pointer;
+  background-color: rgba(#000, .1);
+}

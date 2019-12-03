@@ -1,0 +1,24 @@
+
+.full-width {
+  width: 100%;
+}
+
+mat-form-field{
+  font-size: 1.5rem;
+}
+
+mat-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 2rem;
+
+}
+
+.remove_circle {
+  grid-column: 2 / 3;
+  justify-self: end;
+}
+
+mat-card-content {
+  grid-column: 1 / -1;
+}

@@ -1,0 +1,12 @@
+.card {
+  &__response {
+    display: flex;
+    justify-content: center;
+
+    &--coming {
+      margin-right: 2rem;
+
+    }
+
+  }
+}
