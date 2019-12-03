@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
     }
     this.dialogRef.close();
     this.authService.login(this.form.value.username, this.form.value.password).subscribe((user) => {
-      console.log(user);
 
       if (user.accountType === 'admin') {
         this.router.navigateByUrl('/users');
