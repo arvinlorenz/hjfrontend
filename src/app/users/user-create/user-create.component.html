@@ -37,7 +37,7 @@
         <div *ngFor="let companionCtrl of form.get('companions').controls; let i = index"
           [formGroupName]="i">
           <mat-card>
-              <button mat-icon-button (click)="deleteCompanion()" class="remove_circle">
+              <button mat-icon-button (click)="deleteCompanion(i)" class="remove_circle">
                 <mat-icon>remove_circle</mat-icon>
               </button>
               <mat-card-content>
