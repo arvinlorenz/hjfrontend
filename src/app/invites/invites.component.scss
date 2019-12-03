@@ -53,6 +53,9 @@
   &__greetings {
     text-align: center;
     line-height: 2;
+    @media only screen and (max-width: $bp-small) {
+      line-height: 1.4;
+    }
   }
 
   &__response {
