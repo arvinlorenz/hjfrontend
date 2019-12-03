@@ -41,11 +41,11 @@ export class LoginComponent implements OnInit {
       if (user.accountType === 'admin') {
         this.router.navigateByUrl('/users');
 
-      } else if (user.accountType === 'guest' && user.coming === 'not confirmed') {
+      } else if (user.accountType === 'guest' && user.user.coming === 'not confirmed') {
         this.router.navigateByUrl('/invites');
-      } else if (user.coming === 'not coming') {
+      } else if (user.user.coming === 'not coming') {
         this.router.navigateByUrl('/invites/thank-you');
-      } else if (user.coming === 'coming') {
+      } else if (user.user.coming === 'coming') {
         this.router.navigateByUrl('/invites/ty');
       }
     });
