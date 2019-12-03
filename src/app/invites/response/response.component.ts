@@ -25,6 +25,7 @@ export class ResponseComponent implements OnInit {
       if (companions.length > 0) {
         this.router.navigate(['invites', 'companions'], { queryParams: { res: 'coming' } });
       } else {
+        this.router.navigate(['invites', 'ty']);
       }
     });
   }
