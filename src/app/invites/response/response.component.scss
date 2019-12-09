@@ -1,0 +1,18 @@
+@import '../../../styles/abstracts/variables';
+.card {
+  &__response {
+    display: flex;
+    justify-content: center;
+
+    &--coming {
+      margin-right: 2rem;
+
+    }
+
+  }
+}
+.imp-info{
+  font-weight: 600;
+  font-style: italic;
+  color: #0e427d
+}

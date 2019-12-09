@@ -36,15 +36,20 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(this.form.value.username, this.form.value.password).subscribe((user) => {
-
+      console.log(user.user.coming);
       if (user.accountType === 'admin') {
         this.dialogRef.close();
         this.router.navigateByUrl('/users');
 
       } else {
         this.dialogRef.close();
+        if (user.user.coming === 'not confirmed') {
+          this.router.navigateByUrl('/invites');
 
-        this.router.navigateByUrl('/programs');
+        } else {
+          this.router.navigateByUrl('/programs');
+
+        }
 
       }
     }, () => {

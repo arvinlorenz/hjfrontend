@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'users', loadChildren: './users/users.module#UsersModule', canLoad: [AuthGuard, AdminAuthGuard]},
   { path: 'programs', loadChildren: './programs/programs.module#ProgramsModule', canLoad: [AuthGuard]},
+  { path: 'invites', loadChildren: './invites/invites.module#InvitesModule', canLoad: [AuthGuard]},
 
 ];
 @NgModule({

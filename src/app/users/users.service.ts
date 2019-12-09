@@ -4,12 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { StorageService } from '../shared/storage.service';
 import { environment } from '../../environments/environment';
 import { of } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 const BACK_END_URL = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  constructor(private storageService: StorageService, private http: HttpClient) { }
+  constructor(private storageService: StorageService, private http: HttpClient, private authService: AuthService) { }
 
 
   fetchUsers() {
@@ -171,6 +172,7 @@ export class UsersService {
       }),
       switchMap((user) => {
         updatedUser = user;
+        this.authService._user.next({...updatedUser, token: localStorage.getItem('token')});
         return this.storageService.users;
     }),
       take(1),

@@ -13,7 +13,7 @@ const BACK_END_URL = environment.apiUrl;
 })
 export class AuthService {
   // tslint:disable-next-line: variable-name
-  private _user = new BehaviorSubject<any>(null);
+  public _user = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient, private storageService: StorageService) { }
 
