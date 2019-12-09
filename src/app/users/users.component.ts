@@ -11,7 +11,6 @@ export interface Companion {
   firstname: string;
   lastname: string;
   table_no: number;
-  seat_no: number;
   coming: boolean;
 }
 export interface UsersElement {
@@ -20,8 +19,8 @@ export interface UsersElement {
   firstname: string;
   lastname: string;
   table_no: number;
-  seat_no: number;
   coming: boolean;
+  contact: string;
   companions: [Companion];
 }
 
@@ -31,7 +30,7 @@ export interface UsersElement {
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ['table_no', 'seat_no', 'firstname', 'lastname', 'response', 'companions'];
+  displayedColumns: string[] = ['table_no', 'firstname', 'lastname', 'response', 'contact', 'companions'];
   dataSource;
   users;
 
@@ -46,7 +45,6 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.fetchUsers().subscribe();
     this.storageService.users.subscribe((users) => {
       this.users = users.filter(user => user.accountType !== 'admin');
       this.dataSource = new MatTableDataSource(this.users);

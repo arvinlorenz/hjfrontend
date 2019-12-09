@@ -3,6 +3,7 @@ import { tap, map, switchMap, take, filter } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { StorageService } from '../shared/storage.service';
 import { environment } from '../../environments/environment';
+import { of } from 'rxjs';
 const BACK_END_URL = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class UsersService {
                 firstname: user.firstname,
                 lastname: user.lastname,
                 table_no: user.table_no,
-                seat_no: user.seat_no,
                 coming: user.coming,
+                contact: user.contact,
                 companions: user.companions,
                 accountType: user.accountType,
               };
@@ -50,7 +51,6 @@ export class UsersService {
     firstname: string,
     lastname: string,
     tableNo: number,
-    seatNo: number,
     companions: any[]
   ) {
     let newUser;
@@ -60,7 +60,6 @@ export class UsersService {
       firstname,
       lastname,
       table_no: tableNo,
-      seat_no: seatNo,
       companions
     }).pipe(
       map((userData: any) => {
@@ -70,7 +69,7 @@ export class UsersService {
           firstname: userData.user.firstname,
           lastname: userData.user.lastname,
           table_no: userData.user.table_no,
-          seat_no: userData.user.seat_no,
+          contact: userData.user.contact,
           coming: userData.user.coming,
           companions: userData.user.companions,
         };
@@ -94,7 +93,6 @@ export class UsersService {
     firstname: string,
     lastname: string,
     tableNo: number,
-    seatNo: number,
     companions: any[]
   ) {
     let updatedUser;
@@ -104,7 +102,6 @@ export class UsersService {
       firstname,
       lastname,
       table_no: tableNo,
-      seat_no: seatNo,
       companions
     }).pipe(
       // tslint:disable-next-line: no-shadowed-variable
@@ -115,7 +112,7 @@ export class UsersService {
           firstname: userData.user.firstname,
           lastname: userData.user.lastname,
           table_no: userData.user.table_no,
-          seat_no: userData.user.seat_no,
+          contact: userData.user.contact,
           coming: userData.user.coming,
           companions: userData.user.companions,
         };
@@ -151,14 +148,39 @@ export class UsersService {
   updateResponse(
     userId: string,
     coming: string,
+    contact: string,
     companions
   ) {
-    console.log(coming,
-      companions);
+    let updatedUser;
     return this.http.put(`${BACK_END_URL}user/` + userId, {
       coming,
+      contact,
       companions
-    });
+    }).pipe(
+      map((userData: any) => {
+        return {
+          id: userData.user._id,
+          username: userData.user.username,
+          firstname: userData.user.firstname,
+          lastname: userData.user.lastname,
+          table_no: userData.user.table_no,
+          contact: userData.user.contact,
+          coming: userData.user.coming,
+          companions: userData.user.companions,
+        };
+      }),
+      switchMap((user) => {
+        updatedUser = user;
+        return this.storageService.users;
+    }),
+      take(1),
+      switchMap(users => {
+        const userIndex = users.findIndex(user => user.id === userId);
+        users[userIndex] = updatedUser;
+        this.storageService._users.next(users);
+        return of(updatedUser);
+      })
+    );
     // .pipe(
       // tslint:disable-next-line: no-shadowed-variable
     //   map((userData: any) => {

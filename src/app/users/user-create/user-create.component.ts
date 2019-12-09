@@ -39,7 +39,6 @@ export class UserCreateComponent implements OnInit {
           user.username,
           null,
           user.table_no,
-          user.seat_no
         );
         if (user.companions.length > 0) {
           for (const companion of user.companions) {
@@ -48,8 +47,7 @@ export class UserCreateComponent implements OnInit {
                 coming: new FormControl(companion.coming),
                 firstname: new FormControl(companion.firstname, Validators.required),
                 lastname: new FormControl(companion.lastname, Validators.required),
-                table_no: new FormControl(companion.table_no, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
-                seat_no: new FormControl(companion.seat_no, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+                table_no: new FormControl(companion.table_no, [Validators.pattern(/^[1-9]+[0-9]*$/)]),
               })
             );
           }
@@ -65,7 +63,6 @@ export class UserCreateComponent implements OnInit {
     username = null,
     password = null,
     tableNo = null,
-    seatNo = null
   ) {
     if (this.editMode) {
       this.form = this.fb.group({
@@ -73,7 +70,6 @@ export class UserCreateComponent implements OnInit {
       lastname: [lastname, Validators.required],
       username: [username, Validators.required],
       table_no: [tableNo, Validators.required],
-      seat_no: [seatNo, Validators.required],
       companions: this.companionsArray
     });
     } else {
@@ -83,7 +79,6 @@ export class UserCreateComponent implements OnInit {
       username: [username, Validators.required],
       password: [password, Validators.required],
       table_no: [tableNo, Validators.required],
-      seat_no: [seatNo, Validators.required],
       companions: this.companionsArray
     });
     }
@@ -98,7 +93,6 @@ export class UserCreateComponent implements OnInit {
         firstname: new FormControl(null, Validators.required),
         lastname: new FormControl(null, Validators.required),
         table_no: new FormControl(this.form.value.table_no, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
-        seat_no: new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
       })
     );
   }
@@ -114,7 +108,6 @@ export class UserCreateComponent implements OnInit {
         this.form.value.firstname,
         this.form.value.lastname,
         this.form.value.table_no,
-        this.form.value.seat_no,
         this.form.value.companions,
       ).subscribe(() => {
         this.dialogRef.close();
@@ -127,7 +120,6 @@ export class UserCreateComponent implements OnInit {
         this.form.value.firstname,
         this.form.value.lastname,
         this.form.value.table_no,
-        this.form.value.seat_no,
         this.form.value.companions,
       ).subscribe(() => {
         this.dialogRef.close();

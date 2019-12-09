@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   form;
+  errorForm = false;
 
   constructor(private fb: FormBuilder,
               private dialogRef: MatDialogRef<LoginComponent>,
@@ -34,19 +35,20 @@ export class LoginComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    this.dialogRef.close();
     this.authService.login(this.form.value.username, this.form.value.password).subscribe((user) => {
 
       if (user.accountType === 'admin') {
+        this.dialogRef.close();
         this.router.navigateByUrl('/users');
 
-      } else if (user.accountType === 'guest' && user.user.coming === 'not confirmed') {
-        this.router.navigateByUrl('/invites');
-      } else if (user.user.coming === 'not coming') {
-        this.router.navigateByUrl('/invites/thank-you');
-      } else if (user.user.coming === 'coming') {
-        this.router.navigateByUrl('/invites/ty');
+      } else {
+        this.dialogRef.close();
+
+        this.router.navigateByUrl('/programs');
+
       }
+    }, () => {
+      this.errorForm = true;
     });
 
   }

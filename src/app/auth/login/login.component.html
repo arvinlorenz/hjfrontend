@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Login</h2>
 
-<mat-dialog-content [formGroup]="form">
 
+<mat-dialog-content [formGroup]="form">
     <mat-form-field>
         <input matInput
                 type="text"
@@ -17,6 +17,7 @@
 
 
 </mat-dialog-content>
+<mat-error *ngIf="errorForm">Login error</mat-error>
 
 <div mat-dialog-actions>
     <button mat-button (click)="close()">Cancel</button>
