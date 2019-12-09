@@ -32,7 +32,7 @@ export class ProgramComponent implements OnInit {
 
     $('#companions-checkbox').hide();
     $('#ceremony-submit').hide();
-    await System.import('../../assets/template/js/main.js');
+    await import('../../assets/template/js/main.js');
     this.authService.user.pipe(
       take(1),
       map(user => {
