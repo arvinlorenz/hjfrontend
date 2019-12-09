@@ -69,7 +69,7 @@ export class UserCreateComponent implements OnInit {
       firstname: [firstname, Validators.required],
       lastname: [lastname, Validators.required],
       username: [username, Validators.required],
-      table_no: [tableNo, Validators.required],
+      table_no: [tableNo],
       companions: this.companionsArray
     });
     } else {
@@ -78,7 +78,7 @@ export class UserCreateComponent implements OnInit {
       lastname: [lastname, Validators.required],
       username: [username, Validators.required],
       password: [password, Validators.required],
-      table_no: [tableNo, Validators.required],
+      table_no: [tableNo],
       companions: this.companionsArray
     });
     }
@@ -92,7 +92,7 @@ export class UserCreateComponent implements OnInit {
       new FormGroup({
         firstname: new FormControl(null, Validators.required),
         lastname: new FormControl(null, Validators.required),
-        table_no: new FormControl(this.form.value.table_no, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+        table_no: new FormControl(this.form.value.table_no, [Validators.pattern(/^[1-9]+[0-9]*$/)]),
       })
     );
   }
