@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
         }
 
       }
-    }, () => {
+    }, (e) => {
+      console.log(e);
       this.errorForm = true;
     });
 
