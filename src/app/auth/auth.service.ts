@@ -89,6 +89,7 @@ export class AuthService {
     );
   }
   private saveAuthData(userId: string, token: string, accountType: string) {
+    console.log(localStorage);
     if (!localStorage) {
       alert('This browser does not support local storage. Please use other browsers');
     }
