@@ -55,7 +55,6 @@ export class UsersComponent implements OnInit {
       tap((users) => {
         this.users = users.filter(user => user.accountType !== 'admin');
         this.dataSource = new MatTableDataSource(this.users);
-        console.log(users);
         this.coming = 0;
         this.notComing = 0;
         this.notConfirmed = 0;
