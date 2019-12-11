@@ -36,6 +36,10 @@ export class UsersComponent implements OnInit {
   dataSource;
   users;
 
+  coming = 0;
+  notComing = 0;
+  notConfirmed = 0;
+
   constructor(
     private userService: UsersService,
     private storageService: StorageService,
@@ -53,31 +57,28 @@ export class UsersComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.users);
       }),
       tap(users => {
-        let coming = users.filter(u => {
+        this.coming = users.filter(u => {
           return u.coming === 'coming' && u.accountType === 'guest';
         }).length;
         users.forEach(u => {
-          coming += u.companions.filter(us => us.coming === 'coming').length;
+          this.coming += u.companions.filter(us => us.coming === 'coming').length;
         });
-        console.log('coming', coming);
 
-        let notComing = users.filter(u => {
+        this.notComing = users.filter(u => {
           return u.coming === 'not coming' && u.accountType === 'guest';
         }).length;
         users.forEach(u => {
-          notComing += u.companions.filter(us => us.coming === 'not coming').length;
+          this.notComing += u.companions.filter(us => us.coming === 'not coming').length;
         });
 
-        console.log('not coming', notComing);
 
-        let notConfirmed = users.filter(u => {
+        this.notConfirmed = users.filter(u => {
           return u.coming === 'not confirmed' && u.accountType === 'guest';
         }).length;
         users.forEach(u => {
-          notConfirmed += u.companions.filter(us => us.coming === 'not confirmed').length;
+          this.notConfirmed += u.companions.filter(us => us.coming === 'not confirmed').length;
         });
 
-        console.log('not confirmed', notConfirmed);
       })
     ).subscribe();
 
