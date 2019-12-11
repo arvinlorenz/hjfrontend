@@ -38,13 +38,15 @@
     }
 
     .flaticon-rose-variant-outline-with-vines:before { content: "\f100"; }
-.flaticon-rose-outline-variant-with-vines-and-leaves:before { content: "\f101"; }
-.flaticon-reception-bell:before { content: "\f102"; }
-.flaticon-wedding-kiss:before { content: "\f103"; }
-.flaticon-cake:before { content: "\f104"; }
-    
+    .flaticon-rose-outline-variant-with-vines-and-leaves:before { content: "\f101"; }
+    .flaticon-reception-bell:before { content: "\f102"; }
+    .flaticon-wedding-kiss:before { content: "\f103"; }
+    .flaticon-wedding-relationship:before { content: "\f106"; }
+    .flaticon-cake:before { content: "\f104"; }
+
     $font-Flaticon-rose-variant-outline-with-vines: "\f100";
     $font-Flaticon-rose-outline-variant-with-vines-and-leaves: "\f101";
     $font-Flaticon-reception-bell: "\f102";
     $font-Flaticon-wedding-kiss: "\f103";
+    $font-Flaticon-wedding-relationship: "\f106";
     $font-Flaticon-cake: "\f104";

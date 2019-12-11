@@ -97,6 +97,14 @@ export class UsersService {
     companions: any[]
   ) {
     let updatedUser;
+    console.log({
+      ...userData,
+      username,
+      firstname,
+      lastname,
+      table_no: tableNo,
+      companions
+    });
     return this.http.put(`${BACK_END_URL}user/` + userId, {
       ...userData,
       username,
@@ -106,16 +114,16 @@ export class UsersService {
       companions
     }).pipe(
       // tslint:disable-next-line: no-shadowed-variable
-      map((userData: any) => {
+      map((userRes: any) => {
         return {
-          id: userData.user._id,
-          username: userData.user.username,
-          firstname: userData.user.firstname,
-          lastname: userData.user.lastname,
-          table_no: userData.user.table_no,
-          contact: userData.user.contact,
-          coming: userData.user.coming,
-          companions: userData.user.companions,
+          id: userRes.user._id,
+          username: userRes.user.username,
+          firstname: userRes.user.firstname,
+          lastname: userRes.user.lastname,
+          table_no: userRes.user.table_no,
+          contact: userRes.user.contact,
+          coming: userRes.user.coming,
+          companions: userRes.user.companions,
         };
       }),
       switchMap((user) => {

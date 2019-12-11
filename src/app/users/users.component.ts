@@ -30,7 +30,7 @@ export interface UsersElement {
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ['table_no', 'firstname', 'lastname', 'response', 'contact', 'companions'];
+  displayedColumns: string[] = ['table_no', 'username', 'firstname', 'lastname', 'response', 'contact', 'companions'];
   dataSource;
   users;
 

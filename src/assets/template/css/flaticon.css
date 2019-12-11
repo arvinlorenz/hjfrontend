@@ -23,7 +23,7 @@
 }
 
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
-[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
   font-family: Flaticon;
   font-style: normal;
   font-weight: normal;
@@ -40,4 +40,6 @@
 .flaticon-rose-outline-variant-with-vines-and-leaves:before { content: "\f101"; }
 .flaticon-reception-bell:before { content: "\f102"; }
 .flaticon-wedding-kiss:before { content: "\f103"; }
+.flaticon-wedding-relationship:before { content: "\f106"; }
+
 .flaticon-cake:before { content: "\f104"; }

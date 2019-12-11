@@ -113,6 +113,15 @@ export class UserCreateComponent implements OnInit {
         this.dialogRef.close();
       });
     } else {
+      console.log(
+        this.user,
+        this.data.userId,
+        this.form.value.username,
+        this.form.value.firstname,
+        this.form.value.lastname,
+        this.form.value.table_no,
+        this.form.value.companions,
+      );
       this.usersService.updateUser(
         this.user,
         this.data.userId,
