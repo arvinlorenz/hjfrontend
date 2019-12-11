@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { UserCreateComponent } from './user-create/user-create.component';
 import { StorageService } from '../shared/storage.service';
+import { tap, map, count } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 export interface Companion {
   id: string;
@@ -45,10 +47,40 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.storageService.users.subscribe((users) => {
-      this.users = users.filter(user => user.accountType !== 'admin');
-      this.dataSource = new MatTableDataSource(this.users);
-    });
+    this.storageService.users.pipe(
+      tap((users) => {
+        this.users = users.filter(user => user.accountType !== 'admin');
+        this.dataSource = new MatTableDataSource(this.users);
+      }),
+      tap(users => {
+        let coming = users.filter(u => {
+          return u.coming === 'coming' && u.accountType === 'guest';
+        }).length;
+        users.forEach(u => {
+          coming += u.companions.filter(us => us.coming === 'coming').length;
+        });
+        console.log('coming', coming);
+
+        let notComing = users.filter(u => {
+          return u.coming === 'not coming' && u.accountType === 'guest';
+        }).length;
+        users.forEach(u => {
+          notComing += u.companions.filter(us => us.coming === 'not coming').length;
+        });
+
+        console.log('not coming', notComing);
+
+        let notConfirmed = users.filter(u => {
+          return u.coming === 'not confirmed' && u.accountType === 'guest';
+        }).length;
+        users.forEach(u => {
+          notConfirmed += u.companions.filter(us => us.coming === 'not confirmed').length;
+        });
+
+        console.log('not confirmed', notConfirmed);
+      })
+    ).subscribe();
+
   }
 
   userInfo(userId) {
