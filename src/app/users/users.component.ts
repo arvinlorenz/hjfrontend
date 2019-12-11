@@ -55,17 +55,20 @@ export class UsersComponent implements OnInit {
       tap((users) => {
         this.users = users.filter(user => user.accountType !== 'admin');
         this.dataSource = new MatTableDataSource(this.users);
-      }),
-      tap(users => {
+        console.log(users);
+        this.coming = 0;
+        this.notComing = 0;
+        this.notConfirmed = 0;
+
         this.coming = users.filter(u => {
-          return u.coming === 'coming' && u.accountType === 'guest';
+          return u.coming === 'coming';
         }).length;
         users.forEach(u => {
           this.coming += u.companions.filter(us => us.coming === 'coming').length;
         });
 
         this.notComing = users.filter(u => {
-          return u.coming === 'not coming' && u.accountType === 'guest';
+          return u.coming === 'not coming';
         }).length;
         users.forEach(u => {
           this.notComing += u.companions.filter(us => us.coming === 'not coming').length;
@@ -73,12 +76,11 @@ export class UsersComponent implements OnInit {
 
 
         this.notConfirmed = users.filter(u => {
-          return u.coming === 'not confirmed' && u.accountType === 'guest';
+          return u.coming === 'not confirmed';
         }).length;
         users.forEach(u => {
           this.notConfirmed += u.companions.filter(us => us.coming === 'not confirmed').length;
         });
-
       })
     ).subscribe();
 

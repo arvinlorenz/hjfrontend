@@ -32,7 +32,8 @@ export class UsersService {
             });
 
           }),
-          tap((users: any) => {
+          tap((usersR: any) => {
+            const users = usersR.filter(user => user.accountType !== 'admin');
             this.storageService._users.next(users);
         }));
   }
