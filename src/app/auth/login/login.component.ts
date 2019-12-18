@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(this.form.value.username, this.form.value.password).subscribe((user) => {
-      console.log(user.user.coming);
       if (user.accountType === 'admin') {
         this.dialogRef.close();
         this.router.navigateByUrl('/users');
@@ -53,7 +52,6 @@ export class LoginComponent implements OnInit {
 
       }
     }, (e) => {
-      console.log(e);
       this.errorForm = true;
     });
 
