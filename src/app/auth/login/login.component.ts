@@ -35,25 +35,32 @@ export class LoginComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    this.authService.login(this.form.value.username, this.form.value.password).subscribe((user) => {
-      if (user.accountType === 'admin') {
-        this.dialogRef.close();
-        this.router.navigateByUrl('/users');
-
-      } else {
-        this.dialogRef.close();
-        if (user.user.coming === 'not confirmed') {
-          this.router.navigateByUrl('/invites');
+    try {
+      localStorage.setItem('test', 'test');
+      localStorage.removeItem('test');
+      this.authService.login(this.form.value.username, this.form.value.password).subscribe((user) => {
+        if (user.accountType === 'admin') {
+          this.dialogRef.close();
+          this.router.navigateByUrl('/users');
 
         } else {
-          this.router.navigateByUrl('/programs');
+          this.dialogRef.close();
+          if (user.user.coming === 'not confirmed') {
+            this.router.navigateByUrl('/invites');
+
+          } else {
+            this.router.navigateByUrl('/programs');
+
+          }
 
         }
+      }, (e) => {
+        this.errorForm = true;
+      });
+    } catch (e) {
+      alert('This browser does not support local storage. Please use other browsers');
 
-      }
-    }, (e) => {
-      this.errorForm = true;
-    });
+    }
 
   }
 
