@@ -89,12 +89,13 @@ export class AuthService {
     );
   }
   private saveAuthData(userId: string, token: string, accountType: string) {
-    if (!localStorage) {
-      alert('This browser does not support local storage. Please use other browsers');
+    try {
+      localStorage.setItem('token', token);
+      localStorage.setItem('accountType', accountType);
+      localStorage.setItem('userId', userId);
+    } catch (error) {
+      alert('This browser does not support local storage. Please use other browser');
     }
-    localStorage.setItem('token', token);
-    localStorage.setItem('accountType', accountType);
-    localStorage.setItem('userId', userId);
   }
 
 
