@@ -6,6 +6,15 @@
 
   grid-template-rows: 100vh;
 }
+.invite-image-bg {
+  z-index: -1;
+  background: url('https://res.cloudinary.com/arvin-cloudinary/image/upload/v1575879709/hjwed/v2/IMG_8312_cxnvbm.jpg') no-repeat center center fixed;
+  background-size: cover;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  background-position: cover;
+
+}
 .bg-video {
   grid-column: 1 / -1;
   grid-row: 1 / -1;
