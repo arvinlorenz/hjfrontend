@@ -308,8 +308,6 @@ console.log('HAY');
 		now = (Date.parse(now) / 1000);
 
 		var timeLeft = endTime - now;
-    if (timeleft > 0) {
-      hours = "0";
       var days = Math.floor(timeLeft / 86400);
       var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
       var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
@@ -323,11 +321,18 @@ console.log('HAY');
       $("#hours").html(hours + "<span>Hours</span>");
       $("#minutes").html(minutes + "<span>Minutes</span>");
       $("#seconds").html(seconds + "<span>Seconds</span>");
-  }
 
 }
+  let timeLeft = null;
+  var endTime = new Date("30 December 2019 15:00:00 GMT+08:00");
+  endTime = (Date.parse(endTime) / 1000);
 
-setInterval(function() { makeTimer(); }, 1000);
+  var now = new Date();
+  now = (Date.parse(now) / 1000);
 
+  timeLeft = endTime - now;
+  if (timeleft > 0) {
+    setInterval(function() { makeTimer(); }, 1000);
+  }
 })(jQuery);
 
